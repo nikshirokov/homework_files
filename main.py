@@ -25,10 +25,12 @@ def get_shop_list_by_dishes(dishes, person_count):
                                                             'quantity': ingredient['quantity'] * person_count}
     return shop_list
 
+
 pprint(my_cook_book())
 print()
 pprint(get_shop_list_by_dishes(['Фахитос', 'Омлет'], 2))
 print()
+
 
 def line_counter(files):
     total_line_count = {}
@@ -41,12 +43,17 @@ def line_counter(files):
         keys = list(total_line_count.keys())
         index = list(total_line_count.values()).index(target_grade)
         key = keys[index]
-        print(key)
-        print(target_grade)
+        write_to_file('4.txt', key)
+        write_to_file('4.txt', str(target_grade))
         with open(key, 'r', encoding='utf-8') as f:
             data = list(f)
-            print(''.join(data))
+            write_to_file('4.txt', ''.join(data))
         total_line_count.pop(key)
+
+
+def write_to_file(file, text):
+    with open(file, 'a', encoding='utf-8') as f:
+        f.write(text + '\n')
 
 
 line_counter(['1.txt', '2.txt', '3.txt'])
